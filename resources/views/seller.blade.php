@@ -7,8 +7,9 @@
             <img src="\img\floor-tile.png" class="rounded-circle" style="max-height:6vw; border: 3px solid #000;">
         </div>
         <div class="col-2 pt-4">
-                <h1 style="color: #000;">Admin</h1>
-            </div>
+            <h1 style="color: #000;" class="my-0">{{ $user->name }}</h1>
+            <h3 style="color: #000;" class="my-0">{{ $user->seller->description }}</h3>
+        </div>
     </div>
 
     <div class="row justify-content-center">
