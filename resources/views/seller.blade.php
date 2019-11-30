@@ -10,6 +10,9 @@
             <h1 style="color: #000;" class="my-0">{{ $user->name }}</h1>
             <h2 style="color: #000;" class="my-0">{{ $user->seller->description }}</h2>
         </div>
+        <div class="col-2">
+        <button onclick="window.location.href='/p/create'" class="btn btn-light">Add Auction</button>
+        </div>
     </div>
 
     <div class="row justify-content-center">

@@ -18,3 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/seller/{user}', 'SellerController@index');
+
+Route::get('/p/create', 'ProductController@create');
