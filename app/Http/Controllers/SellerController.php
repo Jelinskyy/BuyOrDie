@@ -9,6 +9,6 @@ class SellerController extends Controller
 {
     public function index(User $user)
     {
-        return view('seller', compact('user'));
+        return view('seller/index', compact('user'));
     }
 }
