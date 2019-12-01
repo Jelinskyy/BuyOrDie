@@ -20,33 +20,21 @@
             <div class="card">
 
                 <div class="card-body justify-content-center">
-                    <div class="row">
-                        <div class="col-1 justify-content-center">
-                            <img src="\img\floor-tile.png" style="max-height:6vw">
+                    @foreach ($user->product as $product)
+                        <div class="row auction">
+                            <div class="col-1 justify-content-center">
+                                <img src="\img\floor-tile.png" style="max-height:6vw">
+                            </div>
+                            <div class="col-8">
+                                <h2>{{ $product->title }}</h2>
+                                <h1><b><a href="/seller/{{ $user->id }}">{{ $user->name }}</a></b></h1>
+                            </div>
+                            <div class="col-3 d-flex justify-content-end">
+                                <h3>{{ $product->price }}$</h3>
+                            </div>
                         </div>
-                        <div class="col-8">
-                            <h2>None item awaible. We are sorry :'(</h2>
-                            <h1><b><a href="/seller/{{ $user->id }}">{{ $user->name }}</a></b></h1>
-                        </div>
-                        <div class="col-3 d-flex justify-content-end">
-                            <h3>30.99$</h3>
-                        </div>
-                    </div>
+                    @endforeach
 
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-1 justify-content-center">
-                            <img src="\img\floor-tile.png" class="" style="max-height:6vw">
-                        </div>
-                        <div class="col-8">
-                            <h2>None item awaible. We are sorry :'(</h2>
-                            <h1><b><a href="/seller/{{ $user->id }}">{{ $user->name }}</a></b></h1>
-                        </div>
-                        <div class="col-3 d-flex justify-content-end">
-                            <h3>30.99$</h3>
-                        </div>
-                    </div>
                 </div>
 
             </div>

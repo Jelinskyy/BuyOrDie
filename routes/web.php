@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/seller/{user}', 'SellerController@index');
 
 Route::get('/p/create', 'ProductController@create');
+Route::post('/p', 'ProductController@store');

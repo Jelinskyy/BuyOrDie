@@ -53,8 +53,8 @@ class User extends Authenticatable
         return $this->hasOne(Seller::class);
     }
 
-    public function prcuct()
+    public function product()
     {
-        return $this->hasMany(Procuct::class);
+        return $this->hasMany(Product::class);
     }
 }

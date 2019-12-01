@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Porduct extends Model
+class Product extends Model
 {
+    protected $guarded = [];
+
     function user (){
         return $this->belongsTo(User::class);
     }
