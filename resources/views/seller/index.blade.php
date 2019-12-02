@@ -10,9 +10,18 @@
             <h1 style="color: #000;" class="my-0">{{ $user->name }}</h1>
             <h2 style="color: #000;" class="my-0">{{ $user->seller->description }}</h2>
         </div>
-        <div class="col-2">
-        <button onclick="window.location.href='/p/create'" class="btn btn-light">Add Auction</button>
-        </div>
+        @can('update', $user->seller)
+            <div class="col-2">
+                <div class="row pb-2">
+                    <button onclick="window.location.href='/p/create'" class="btn btn-light">Add Auction</button>
+                </div>
+
+                <div class="row">
+                    <button onclick="window.location.href='/seller/edit'" class="btn btn-light">Edit Profile</button>
+                </div>
+            </div>
+        @endcan
+
     </div>
 
     <div class="row justify-content-center">

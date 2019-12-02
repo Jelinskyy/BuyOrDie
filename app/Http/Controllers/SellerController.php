@@ -11,4 +11,18 @@ class SellerController extends Controller
     {
         return view('seller/index', compact('user'));
     }
+
+    public function edit()
+    {
+        return view('seller/edit');
+    }
+
+    public function update()
+    {
+        $data = request()->validate([
+            'description' => '',
+        ]);
+
+        auth()->user()->seller()->update($data);
+    }
 }
