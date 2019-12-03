@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center align-items-center pb-4">
         <div class="col-1">
-            <img src="\img\floor-tile.png" class="rounded-circle" style="max-height:6vw; border: 0.4vw solid #000;">
+            <img src="{{ $user->seller->sellerImage() }}" class="rounded-circle" style="max-height:6vw; border: 0.2vw solid #000;">
         </div>
         <div class="col-2">
             <h1 style="color: #000;" class="my-0">{{ $user->name }}</h1>
@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="row">
-                    <button onclick="window.location.href='/seller/edit'" class="btn btn-light">Edit Profile</button>
+                <button onclick="window.location.href='/seller/{{ $user->id }}/edit'" class="btn btn-light">Edit Profile</button>
                 </div>
             </div>
         @endcan
@@ -29,14 +29,17 @@
             <div class="card">
 
                 <div class="card-body justify-content-center">
+                    @if (count($user->product)<=0)
+                        <h1>No Product's to buy :'(</h1>
+                    @endif
                     @foreach ($user->product as $product)
                         <div class="row auction">
                             <div class="col-1 justify-content-center">
-                                <img src="\img\floor-tile.png" style="max-height:6vw">
+                                <img src="/storage/{{ $product->image }}" style="max-height:6vw">
                             </div>
                             <div class="col-8">
-                                <h2>{{ $product->title }}</h2>
-                                <h1><b><a href="/seller/{{ $user->id }}">{{ $user->name }}</a></b></h1>
+                                <h1>{{ $product->title }}</h1>
+                                <h2><b><a href="/seller/{{ $user->id }}">{{ $user->name }}</a></b></h2>
                             </div>
                             <div class="col-3 d-flex justify-content-end">
                                 <h3>{{ $product->price }}$</h3>

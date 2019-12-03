@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -19,14 +20,21 @@ class ProductController extends Controller
     public function store(){
         $data = request()->validate([
             'title' => 'required',
+            'image' => ['required', 'image'],
             'description' => 'required',
             'price' => 'required'
         ]);
 
+        $imagePath = request('image')->store('uploads', 'public');
+
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
+        $image->save();
+
         auth()->user()->product()->create([
             'title' => $data['title'],
             'description' => $data['description'],
-            'price' => $data['price']
+            'price' => $data['price'],
+            'image' => $imagePath,
         ]);
         return redirect('/seller/'.auth()->user()->id);
     }

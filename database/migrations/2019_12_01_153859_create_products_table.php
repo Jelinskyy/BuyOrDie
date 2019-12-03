@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->double('price');
             $table->string('title');
+            $table->string('image');
             $table->text('description');
 
             $table->timestamps();

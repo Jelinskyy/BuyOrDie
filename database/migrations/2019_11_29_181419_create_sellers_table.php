@@ -16,6 +16,7 @@ class CreateSellersTable extends Migration
         Schema::create('sellers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('description');
+            $table->string('image');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

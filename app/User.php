@@ -44,6 +44,7 @@ class User extends Authenticatable
         static::created(function ($user){
             $user->seller()->create([
                 'description' => 'New user',
+                'image' => '',
             ]);
         });
     }

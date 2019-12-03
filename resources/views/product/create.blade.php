@@ -9,12 +9,12 @@
                     <h1 style="color:rgba(0, 0, 0, 0.55)">Create Auction</h1>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="/p" autocomplete="off">
+                    <form method="post" enctype="multipart/form-data" action="/p">
                             @csrf
 
                             <div class="form-group row">
                                 <div class="col-md-6 col-10  m-auto">
-                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Title" required autocomplete="title" autofocus>
+                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Title" autocomplete="title" autofocus>
 
                                     @error('title')
                                         <span class="invalid-feedback" role="alert">
@@ -25,14 +25,24 @@
                             </div>
 
                             <div class="form-group row">
-                                    <div class="col-md-6 col-10 m-auto">
-                                        <textarea class = "form-control light @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" placeholder="Descripton" required autocomplete="description" name="description" rows="5"></textarea>
-                                        @error('description')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
+                                <div class="col-md-6 col-10 m-auto">
+                                    <textarea class = "form-control light @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" placeholder="Descripton" autocomplete="description" name="description" rows="5"></textarea>
+                                    @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                                <div class="row"><div class="col-md-6 col-10  m-auto">
+                                    <label for="image" class="col-md-4 col-form-label">Post Image</label>
+
+                                    <input type="file" class="form-control-file" id="image" name="image">
+
+                                    @if ($errors->has('image'))
+                                        <strong>{{ $errors->first('image') }}</strong>
+                                    @endif
+                                </div>
                             </div>
 
                             <div class="form-group row">

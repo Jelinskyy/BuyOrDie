@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/seller/edit', 'SellerController@edit');
+Route::get('/seller/{user}/edit', 'SellerController@edit');
 Route::get('/seller/{user}', 'SellerController@index');
-Route::patch('/seller', 'SellerController@update');
+Route::patch('/seller/{user}', 'SellerController@update');
 
 Route::get('/p/create', 'ProductController@create');
 Route::post('/p', 'ProductController@store');
