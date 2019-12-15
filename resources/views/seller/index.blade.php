@@ -35,7 +35,7 @@
                     @foreach ($user->product as $product)
                         <div class="row auction">
                             <div class="col-1 justify-content-center">
-                                <img src="/storage/{{ $product->image }}" style="max-height:6vw">
+                            <a href="/p/{{ $product->id }}"><img src="/storage/{{ $product->image }}" style="max-height:6vw"></a>
                             </div>
                             <div class="col-8">
                                 <h1>{{ $product->title }}</h1>

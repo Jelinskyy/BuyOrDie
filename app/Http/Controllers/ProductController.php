@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use App\Product;
 
 class ProductController extends Controller
 {
@@ -37,5 +38,9 @@ class ProductController extends Controller
             'image' => $imagePath,
         ]);
         return redirect('/seller/'.auth()->user()->id);
+    }
+
+    public function show(Product $product){
+        return view('product/show', compact('product'));
     }
 }

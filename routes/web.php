@@ -22,4 +22,5 @@ Route::get('/seller/{user}', 'SellerController@index');
 Route::patch('/seller/{user}', 'SellerController@update');
 
 Route::get('/p/create', 'ProductController@create');
+Route::get('/p/{product}', 'ProductController@show');
 Route::post('/p', 'ProductController@store');

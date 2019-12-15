@@ -6,7 +6,7 @@
         <div class="col-5">
             <div class="card">
                 <div class="card-header d-flex justify-content-center">
-                    <h1 style="color:rgba(0, 0, 0, 0.55)">Create Auction</h1>
+                    <h1 style="color:rgba(0, 0, 0, 0.55)">Edit profile</h1>
                 </div>
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" action="/seller/{{ $user->id }}" autocomplete="off">
