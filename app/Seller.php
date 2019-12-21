@@ -21,4 +21,12 @@ class Seller extends Model
 
         return '/storage/' . $imagePath;
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function(Seller $seller){
+            unlink(storage_path("app/public/{$seller->image}"));
+        });
+    }
 }

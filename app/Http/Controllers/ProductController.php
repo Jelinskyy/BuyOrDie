@@ -6,6 +6,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\Product;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {

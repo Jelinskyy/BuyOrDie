@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Seller;
 
 class CreateSellersTable extends Migration
 {
@@ -31,6 +32,11 @@ class CreateSellersTable extends Migration
      */
     public function down()
     {
+        $sellers = Seller::all();
+        foreach($sellers as $seller)
+        {
+            unlink(storage_path("app\public/{$seller->image}"));
+        }
         Schema::dropIfExists('sellers');
     }
 }
