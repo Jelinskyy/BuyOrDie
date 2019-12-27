@@ -35,7 +35,7 @@ class CreateSellersTable extends Migration
         $sellers = Seller::all();
         foreach($sellers as $seller)
         {
-            unlink(storage_path("app\public/{$seller->image}"));
+            if(!empty($seller->image)) unlink(storage_path("app\public/{$seller->image}"));
         }
         Schema::dropIfExists('sellers');
     }

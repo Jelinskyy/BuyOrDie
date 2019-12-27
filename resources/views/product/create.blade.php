@@ -34,20 +34,40 @@
                                     @enderror
                                 </div>
                             </div>
-                                <div class="row"><div class="col-md-6 col-10  m-auto">
+
+                            <div class="form-group row">
+                                <div class="col-md-6 col-10  m-auto">
                                     <label for="image" class="col-md-4 col-form-label">Post Image</label>
 
-                                    <input type="file" class="form-control-file" id="image" name="image">
+                                    <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image">
 
-                                    @if ($errors->has('image'))
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    @endif
+                                    @error('image')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row pt-3">
+                                <div class="col-md-6 col-10  m-auto">
+                                    <select id="category" class="form-control @error('category') is-invalid @enderror" name="category" value="{{ old('category') }}" autocomplete="category" autofocus>
+                                        @foreach ($categorys as $item)
+                                            <option>{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('category')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-md-6 col-10  m-auto">
-                                    <input id="price" type="number" step="0.01" min="0.01" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" placeholder="Price" required autocomplete="price" autofocus>
+                                    <input id="price" type="number" step="0.01" min="0.01" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" placeholder="Price" autocomplete="price" autofocus>
 
                                     @error('price')
                                         <span class="invalid-feedback" role="alert">

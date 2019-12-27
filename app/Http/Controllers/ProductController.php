@@ -6,6 +6,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\Product;
+use App\category;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -16,15 +17,23 @@ class ProductController extends Controller
     }
 
     public function create(){
-        return view('product/create');
+        $categorys = category::all();
+        return view('product/create', compact('categorys'));
     }
 
     public function store(){
+        $items = category::all();
+        $categorys = array();
+        foreach($items as $item)
+        {
+            array_push($categorys, $item->name);
+        }
         $data = request()->validate([
             'title' => 'required',
             'image' => ['required', 'image'],
             'description' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'category' => ['required', 'in:'.implode(",", $categorys)],
         ]);
 
         $imagePath = request('image')->store('uploads', 'public');
@@ -37,6 +46,7 @@ class ProductController extends Controller
             'description' => $data['description'],
             'price' => $data['price'],
             'image' => $imagePath,
+            'category' => $data['category'],
         ]);
         return redirect('/seller/'.auth()->user()->id);
     }

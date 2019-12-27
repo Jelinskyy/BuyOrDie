@@ -20,6 +20,7 @@
                             <h3>4,8<i class="icon-star" style="margin-left: 1vw;"></i> <i class="icon-star"></i> <i class="icon-star"></i> <i class="icon-star"></i> <i class="icon-star-empty"></i></h3>
 
                             <hr>
+                            <p>Category: {{ $product->category }}</p>
                             <p>{{ $product->description }}</p>
                             <hr>
 
