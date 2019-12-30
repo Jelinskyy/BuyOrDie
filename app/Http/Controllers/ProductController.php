@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'show']);
     }
 
     public function create(){
@@ -22,18 +22,13 @@ class ProductController extends Controller
     }
 
     public function store(){
-        $items = category::all();
-        $categorys = array();
-        foreach($items as $item)
-        {
-            array_push($categorys, $item->name);
-        }
+        $items = category::all()->pluck('name')->toArray();
         $data = request()->validate([
             'title' => 'required',
             'image' => ['required', 'image'],
             'description' => 'required',
             'price' => 'required',
-            'category' => ['required', 'in:'.implode(",", $categorys)],
+            'category' => ['required', 'in:'.implode(",", $items)],
         ]);
 
         $imagePath = request('image')->store('uploads', 'public');
@@ -52,6 +47,8 @@ class ProductController extends Controller
     }
 
     public function show(Product $product){
-        return view('product/show', compact('product'));
+        $rate = round($product->rates()->withPivot('rate')->pluck('rate')->avg(),2);
+        $actualy = auth()->user()->rateing()->withPivot(['rate', 'product_id'])->where('product_id', $product->id)->pluck('rate')->first();
+        return view('product/show', compact('product', 'rate', 'actualy'));
     }
 }

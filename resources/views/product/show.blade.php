@@ -17,7 +17,7 @@
 
                             <h1 class="py-3">{{ $product->price }}$</h1>
 
-                            <h3>4,8<i class="icon-star" style="margin-left: 1vw;"></i> <i class="icon-star"></i> <i class="icon-star"></i> <i class="icon-star"></i> <i class="icon-star-empty"></i></h3>
+                        <rate-stars rate='{{ $rate }}' actualy='{{ $actualy }}' productid='{{ $product->id }}'></rate-stars>
 
                             <hr>
                             <p>Category: {{ $product->category }}</p>
@@ -25,14 +25,6 @@
                             <hr>
 
                             <div style="height: 6vh;"></div>
-
-                            <table style="height: 100%; width: 100%; position: absolute; left: 0; top: 0;">
-                                <tbody>
-                                    <tr>
-                                        <td class="align-bottom"><div class="w-100 d-flex justify-content-end"><button class="btn btn-light align-bottom">Dodaj do koszyka</button></div></td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>

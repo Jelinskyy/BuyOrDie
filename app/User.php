@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -62,6 +63,10 @@ class User extends Authenticatable
     public function seller()
     {
         return $this->hasOne(Seller::class);
+    }
+
+    public function rateing(){
+        return $this->BelongsToMany(Product::class);
     }
 
     public function product()

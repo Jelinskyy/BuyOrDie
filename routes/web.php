@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::post('/rate/{product}/{value}', 'RatesController@store');
+
 Route::get('/seller/{user}/edit', 'SellerController@edit');
 Route::get('/seller/{user}', 'SellerController@index');
 Route::patch('/seller/{user}', 'SellerController@update');
