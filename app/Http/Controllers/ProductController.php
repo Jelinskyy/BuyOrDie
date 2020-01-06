@@ -9,6 +9,7 @@ use App\Product;
 use App\category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -31,7 +32,11 @@ class ProductController extends Controller
                 array_push($ids, $id);
             }
         }
-        $categorys = category::all()->pluck('name')->toArray();
+        $categorys = Cache::remember(
+            'category.list',
+            now()->addSeconds(600),
+            function () {return category::all()->pluck('name')->toArray();}
+        );
         $products = DB::table('products')->whereNotIn('id', $ids)->latest()->paginate(15);
         return view('product/index', compact('products', 'shots', 'categorys'));
     }
@@ -67,7 +72,11 @@ class ProductController extends Controller
     }
 
     public function show(Product $product){
-        $rate = round($product->rates()->withPivot('rate')->pluck('rate')->avg(),2);
+        $rate = Cache::remember(
+            'product.rate.' . $product->id,
+            now()->addSeconds(30),
+            function () use($product) { return round($product->rates()->withPivot('rate')->pluck('rate')->avg(),2); }
+        );
         $actualy = auth()->user()->rateing()->withPivot(['rate', 'product_id'])->where('product_id', $product->id)->pluck('rate')->first();
         return view('product/show', compact('product', 'rate', 'actualy'));
     }
