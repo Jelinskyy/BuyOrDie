@@ -7,13 +7,33 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\Product;
 use App\category;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'show']);
+        $this->middleware('auth', ['except' => ['show', 'index']]);
+    }
+
+    public function index(){
+        $shots = array();
+        $ids = array();
+        foreach(category::all()->pluck('name') as $cat)
+        {
+            array_push($shots, DB::table('products')->where('category', $cat)->paginate(2));
+        }
+        foreach($shots as $shot)
+        {
+            foreach($shot->pluck('id') as $id)
+            {
+                array_push($ids, $id);
+            }
+        }
+        $categorys = category::all()->pluck('name')->toArray();
+        $products = DB::table('products')->whereNotIn('id', $ids)->latest()->paginate(15);
+        return view('product/index', compact('products', 'shots', 'categorys'));
     }
 
     public function create(){

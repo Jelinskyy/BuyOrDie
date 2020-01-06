@@ -33,7 +33,7 @@
                         <h1>No Product's to buy :'(</h1>
                     @endif
                     @foreach ($user->product as $product)
-                        <div class="row auction">
+                        <div class="row @if(!$loop->first) mt-1 @endif">
                             <div class="col-1 justify-content-center">
                             <a href="/p/{{ $product->id }}"><img src="/storage/{{ $product->image }}" style="max-height:6vw"></a>
                             </div>
