@@ -33,7 +33,7 @@
                         @endif
                     @endforeach
 
-                    @if (!empty($products))
+                    @if (!empty($products[0]))
                         <div class="col-12 bod-h3 d-flex justify-content-center mt-4">Recomended</div>
                         @foreach ($products as $prod)
                             <div class="col-3 p-1 mx-2 bod-b-1">
@@ -56,6 +56,9 @@
                     @endif
                 </div>
             </div>
+        </div>
+        <div class="col-6 d-flex justify-content-center offset-1">
+            {{ $products->links() }}
         </div>
     </div>
 </div>

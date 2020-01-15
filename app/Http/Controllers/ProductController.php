@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use App\Post;
 use App\Product;
 use App\category;
+use App\ViewsMenager;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -77,7 +79,27 @@ class ProductController extends Controller
             now()->addSeconds(30),
             function () use($product) { return round($product->rates()->withPivot('rate')->pluck('rate')->avg(),2); }
         );
-        $actualy = auth()->user()->rateing()->withPivot(['rate', 'product_id'])->where('product_id', $product->id)->pluck('rate')->first();
-        return view('product/show', compact('product', 'rate', 'actualy'));
+
+        $rateCount = Cache::remember(
+            'product.rate.count.' . $product->id,
+            now()->addSeconds(30),
+            function () use($product) { return count($product->rates()->get()->toArray()); }
+        );
+
+        if(Auth::check())
+        {
+            $views = $product->viewsMenager()->get();
+
+            if(count(auth()->user()->viewed()->where('product_id', $product->id)->get()->toArray())<20)
+            {
+                auth()->user()->viewed()->attach($views);
+            }
+            $actualy = auth()->user()->rateing()->withPivot(['rate', 'product_id'])->where('product_id', $product->id)->pluck('rate')->first();
+        }else
+        {
+            $actualy = 0;
+        }
+
+        return view('product/show', compact('product', 'rate', 'rateCount', 'actualy'));
     }
 }

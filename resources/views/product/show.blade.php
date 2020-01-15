@@ -17,7 +17,7 @@
 
                             <h1 class="py-3">{{ $product->price }}$</h1>
 
-                        <rate-stars rate='{{ $rate }}' actualy='{{ $actualy }}' productid='{{ $product->id }}'></rate-stars>
+                        <rate-stars rate='{{ $rate }}' ratecount='{{ $rateCount }}' actualy='{{ $actualy }}' productid='{{ $product->id }}'></rate-stars>
 
                             <hr>
                             <p>Category: {{ $product->category }}</p>

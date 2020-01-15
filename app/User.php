@@ -69,6 +69,11 @@ class User extends Authenticatable
         return $this->BelongsToMany(Product::class);
     }
 
+    public function viewed()
+    {
+        return $this->belongsToMany(ViewsMenager::class);
+    }
+
     public function product()
     {
         return $this->hasMany(Product::class);

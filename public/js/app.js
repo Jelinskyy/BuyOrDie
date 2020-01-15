@@ -1849,6 +1849,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 function set(prop) {
   for (var i = 1; i <= prop; i++) {
     var name = "star" + i;
@@ -1866,7 +1869,7 @@ function set(prop) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['rate', 'actualy', 'productid'],
+  props: ['rate', 'ratecount', 'actualy', 'productid'],
   mounted: function mounted() {
     console.log('Component mounted.');
     set(this.status);
@@ -37292,92 +37295,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h3", { staticClass: "d-flex" }, [
-    _c("div", {
-      staticClass: "mr-2",
-      domProps: { textContent: _vm._s(_vm.rate) },
-      on: { click: function() {} }
-    }),
-    _vm._v(" "),
-    _c("i", {
-      staticClass: "icon-star-empty ml-1",
-      attrs: { id: "star1" },
-      on: {
-        click: function($event) {
-          return _vm.changeRate(1)
-        },
-        mouseleave: function($event) {
-          return _vm.starCount()
-        },
-        mouseenter: function($event) {
-          return _vm.hover(1)
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "h3 col-12 d-flex" }, [
+      _c("div", {
+        staticClass: "mr-2",
+        domProps: { textContent: _vm._s(_vm.rate) },
+        on: { click: function() {} }
+      }),
+      _vm._v(" "),
+      _c("i", {
+        staticClass: "icon-star-empty ml-1",
+        attrs: { id: "star1" },
+        on: {
+          click: function($event) {
+            return _vm.changeRate(1)
+          },
+          mouseleave: function($event) {
+            return _vm.starCount()
+          },
+          mouseenter: function($event) {
+            return _vm.hover(1)
+          }
         }
-      }
-    }),
-    _vm._v(" "),
-    _c("i", {
-      staticClass: "icon-star-empty ml-1",
-      attrs: { id: "star2" },
-      on: {
-        click: function($event) {
-          return _vm.changeRate(2)
-        },
-        mouseleave: function($event) {
-          return _vm.starCount()
-        },
-        mouseenter: function($event) {
-          return _vm.hover(2)
+      }),
+      _vm._v(" "),
+      _c("i", {
+        staticClass: "icon-star-empty ml-1",
+        attrs: { id: "star2" },
+        on: {
+          click: function($event) {
+            return _vm.changeRate(2)
+          },
+          mouseleave: function($event) {
+            return _vm.starCount()
+          },
+          mouseenter: function($event) {
+            return _vm.hover(2)
+          }
         }
-      }
-    }),
-    _vm._v(" "),
-    _c("i", {
-      staticClass: "icon-star-empty ml-1",
-      attrs: { id: "star3" },
-      on: {
-        click: function($event) {
-          return _vm.changeRate(3)
-        },
-        mouseleave: function($event) {
-          return _vm.starCount()
-        },
-        mouseenter: function($event) {
-          return _vm.hover(3)
+      }),
+      _vm._v(" "),
+      _c("i", {
+        staticClass: "icon-star-empty ml-1",
+        attrs: { id: "star3" },
+        on: {
+          click: function($event) {
+            return _vm.changeRate(3)
+          },
+          mouseleave: function($event) {
+            return _vm.starCount()
+          },
+          mouseenter: function($event) {
+            return _vm.hover(3)
+          }
         }
-      }
-    }),
-    _vm._v(" "),
-    _c("i", {
-      staticClass: "icon-star-empty ml-1",
-      attrs: { id: "star4" },
-      on: {
-        click: function($event) {
-          return _vm.changeRate(4)
-        },
-        mouseleave: function($event) {
-          return _vm.starCount()
-        },
-        mouseenter: function($event) {
-          return _vm.hover(4)
+      }),
+      _vm._v(" "),
+      _c("i", {
+        staticClass: "icon-star-empty ml-1",
+        attrs: { id: "star4" },
+        on: {
+          click: function($event) {
+            return _vm.changeRate(4)
+          },
+          mouseleave: function($event) {
+            return _vm.starCount()
+          },
+          mouseenter: function($event) {
+            return _vm.hover(4)
+          }
         }
-      }
-    }),
-    _vm._v(" "),
-    _c("i", {
-      staticClass: "icon-star-empty ml-1",
-      attrs: { id: "star5" },
-      on: {
-        click: function($event) {
-          return _vm.changeRate(5)
-        },
-        mouseleave: function($event) {
-          return _vm.starCount()
-        },
-        mouseenter: function($event) {
-          return _vm.hover(5)
+      }),
+      _vm._v(" "),
+      _c("i", {
+        staticClass: "icon-star-empty ml-1",
+        attrs: { id: "star5" },
+        on: {
+          click: function($event) {
+            return _vm.changeRate(5)
+          },
+          mouseleave: function($event) {
+            return _vm.starCount()
+          },
+          mouseenter: function($event) {
+            return _vm.hover(5)
+          }
         }
-      }
-    })
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-11" }, [
+      _vm._v("rate's: "),
+      _c("span", {
+        domProps: { textContent: _vm._s(_vm.ratecount) },
+        on: { click: function() {} }
+      })
+    ])
   ])
 }
 var staticRenderFns = []
